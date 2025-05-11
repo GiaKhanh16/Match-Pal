@@ -20,29 +20,30 @@ let sampleTournaments = [
 
 	 // Tournament List View
 struct tourney: View {
+	 @State private var searchText = ""
 	 var body: some View {
 			NavigationStack {
 				 VStack {
 						Spacer()
-						HStack {
-							 Text("Events")
-									.font(.system(.largeTitle, weight: .bold))
-									.frame(maxWidth: .infinity, alignment: .leading)
-									.clipped()
-							 Text("Hello, Marisa!")
-									.font(.system(.body, weight: .medium))
-									.foregroundStyle(.secondary)
-						}
-						.padding(.horizontal)
-						.padding(.top, 50)
+//						HStack {
+//							 Text("Events")
+//									.font(.system(.largeTitle, weight: .bold))
+//									.frame(maxWidth: .infinity, alignment: .leading)
+//									.clipped()
+//							 Text("Hello, Marisa!")
+//									.font(.system(.body, weight: .medium))
+//									.foregroundStyle(.secondary)
+//						}
+//						.padding(.horizontal)
+//						.padding(.top, 20)
 
 						Text("Upcoming:".uppercased())
 							 .frame(maxWidth: .infinity, alignment: .leading)
-							 .padding(.top, 5)
 							 .font(.system(.subheadline, weight: .medium).width(.expanded))
-							 .foregroundStyle(.pink)
+							 .foregroundStyle(.purple)
 							 .padding(.horizontal)
-						
+							 .padding(.top, 1)
+
 						ScrollView {
 							 VStack(spacing: 10) {
 									ForEach(sampleTournaments) { tournament in
@@ -58,18 +59,19 @@ struct tourney: View {
 													 Text(tournament.name)
 															.font(.headline)
 															.foregroundColor(.primary)
-
-													 Text(tournament.date)
-															.font(.subheadline)
-															.foregroundColor(.secondary)
-
-													 Text(tournament.location)
-															.font(.subheadline)
-															.foregroundColor(.secondary)
+													 HStack {
+															Text(tournament.date)
+																 .font(.subheadline)
+																 .foregroundColor(.secondary)
+															
+															Text(tournament.location)
+																 .font(.subheadline)
+																 .foregroundColor(.secondary)
+													 }
 
 													 Text("\(tournament.participants) Participants")
 															.font(.caption)
-															.foregroundColor(.blue)
+															.foregroundColor(.purple)
 												}
 												Spacer()
 										 }
@@ -81,6 +83,8 @@ struct tourney: View {
 							 }
 						}
 				 }
+				 .searchable(text: $searchText, prompt: "Search Tournaments")
+				 .navigationTitle("Events")
 			}
 	 }
 }

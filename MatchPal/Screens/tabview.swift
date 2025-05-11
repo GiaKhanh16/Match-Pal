@@ -37,7 +37,7 @@ struct tab_view: View {
 				 }
 
 				 Tab(AppTabs.profile.title, systemImage: AppTabs.profile.systemImageName, value: .profile) {
-						profile()
+						profile_view()
 				 }
 			}
 	 }
